@@ -2,6 +2,7 @@ interface Todo {
 	completed: boolean;
 	content: string;
 	createdAt: number;
+	completedAt: number | undefined;
 	id: string;
 	label?: string;
 	themeColor?: string;

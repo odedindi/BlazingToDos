@@ -5,6 +5,7 @@ import * as S from './styles';
 import moment from 'moment';
 
 import { Action, useStore } from 'store';
+import { updateTodo } from 'store/actions';
 
 const ColorPicker = dynamic(() => import('components/colorPicker'), {
 	ssr: false,
@@ -28,17 +29,25 @@ const Checkbox = ({ todo }: { todo: Todo }) => {
 			<S.Checkbox
 				checked={todo.completed}
 				value={todo.id}
-				onChange={({ target: { checked } }) =>
-					// handleChange({ ...todo, completed: checked })
-					dispatch(Action.updateTodo({ ...todo, completed: checked }))
-				}
+				onChange={({ target: { checked } }) => {
+					const updatedTodo = {
+						...todo,
+						completed: checked,
+						completedAt: checked ? Date.now() : undefined,
+					};
+					dispatch(Action.updateTodo(updatedTodo));
+				}}
 			/>
 			<S.CheckboxBackground
 				checked={todo.completed}
-				onClick={() =>
-					// handleChange({ ...todo, completed: !todo.completed })
-					dispatch(Action.updateTodo({ ...todo, completed: !todo.completed }))
-				}
+				onClick={() => {
+					const updatedTodo = {
+						...todo,
+						completed: !todo.completed,
+						completedAt: !todo.completed ? Date.now() : undefined,
+					};
+					dispatch(Action.updateTodo(updatedTodo));
+				}}
 			>
 				{todo.completed ? <S.MarkAsCompleted /> : <S.MarkAsNotCompleted />}
 			</S.CheckboxBackground>

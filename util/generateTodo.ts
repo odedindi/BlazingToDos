@@ -8,6 +8,7 @@ export const generateTodo = (
 	content,
 	completed: false,
 	createdAt: Date.now(),
+	completedAt: undefined,
 	id: uuid(),
 	label,
 	themeColor,
