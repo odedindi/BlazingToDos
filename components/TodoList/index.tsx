@@ -1,20 +1,38 @@
 import * as React from 'react';
 import * as S from './styles';
 import * as C from 'config/constants';
-import { useStore } from 'store';
+import { Action, useStore } from 'store';
 import Header from 'components/Header';
 import Todo from 'components/Todo';
+import filterTodos from 'util/filterTodos';
+import searchTodos from 'util/searchTodos';
 
 const TodoList = () => {
 	const {
-		state: { filteredTodos: todos, filter },
+		state: { filteredTodos, filter, mode, searchQuery, todos },
+		dispatch,
 	} = useStore();
-	const activeTodos = todos.filter((todo) => !todo.completed).length;
+	const activeTodos = filteredTodos.filter((todo) => !todo.completed).length;
+
+	React.useEffect(() => {
+		if (mode === 'MODE_ADD') {
+			const match = filterTodos(filter, todos);
+			dispatch(Action.updateFilteredTodos(match));
+		}
+		if (mode === 'MODE_SEARCH') {
+			const match = searchQuery?.length
+				? searchTodos(searchQuery, todos)
+				: todos;
+			const matchedTodos = filterTodos(filter, match);
+			dispatch(Action.updateFilteredTodos(matchedTodos));
+		}
+	}, [dispatch, filter, mode, searchQuery, todos]);
+
 	return (
 		<S.TodoListContainer>
 			<Header />
 			<S.List>
-				{todos.map((todo) => (
+				{filteredTodos.map((todo) => (
 					<Todo key={todo.id} todo={todo} />
 				))}
 			</S.List>
