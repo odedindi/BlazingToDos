@@ -23,7 +23,6 @@ type BasicTheme = {
 		body: number;
 		heading: number;
 		code: number;
-		logo: string;
 	};
 };
 
@@ -61,12 +60,11 @@ declare module 'styled-components' {
 			body: number;
 			heading: number;
 			code: number;
-			logo: string;
 		};
 		// light / dark modes
 		colors: {
-			body?: string;
-			text?: string;
+			body: string;
+			text: string;
 			primary?: string;
 		};
 	}

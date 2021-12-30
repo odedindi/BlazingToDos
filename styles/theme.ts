@@ -2,20 +2,20 @@ import { BasicTheme, DarkTheme, LightTheme } from './styled';
 
 export const light: LightTheme = {
 	body: '#fff',
-	text: '#2d3035',
-	primary: '#6749cd',
+	text: '#557BFA',
+	primary: '#E342D7',
 };
 
 export const dark: DarkTheme = {
-	body: '#141420',
-	text: '#fff',
-	primary: '#6749cd',
+	body: '#0E2161',
+	text: '#E342D7',
+	primary: '#AD8A2A',
 };
 
 const basicTheme: BasicTheme = {
 	fontSizes: {
 		small: '0.8rem',
-		p: '1rem',
+		p: '1.1rem',
 		h6: '1.25rem',
 		h5: '1.5rem',
 		h4: '1.75rem',
@@ -34,7 +34,6 @@ const basicTheme: BasicTheme = {
 		body: 1.5,
 		heading: 1.75,
 		code: 1.6,
-		logo: '2.125rem',
 	},
 	// ...
 };
