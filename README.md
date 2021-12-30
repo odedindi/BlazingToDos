@@ -4,8 +4,8 @@ A multiplatform Todo PWA prototype.
 
 ## App Features
 
-todo list: done.
-graphs showing statistics regarding the user's todos: under construction.
+- todo list: done.
+- graphs showing statistics regarding the user's todos: under construction.
 
 ## Tech/framework used
 
