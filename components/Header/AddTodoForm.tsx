@@ -37,13 +37,15 @@ const AddTodoForm = () => {
 		userInput$.next(target.value);
 
 	const handleSubmit = () =>
-		userInput$.subscribe((input) => {
-			if (!input.trim()) return;
-			if (isAddMode) {
-				dispatch(Action.addTodo(input));
-				resetInputField();
-			} else dispatch(Action.searchTodo(input));
-		});
+		userInput$
+			.subscribe((input) => {
+				if (!input.trim()) return;
+				if (isAddMode) {
+					dispatch(Action.addTodo(input));
+					resetInputField();
+				} else dispatch(Action.searchTodo(input));
+			})
+			.unsubscribe();
 
 	useKeyboardListener(handleSubmit, 'Enter');
 
