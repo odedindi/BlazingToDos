@@ -1,17 +1,19 @@
-import * as React from 'react';
 import * as C from 'config/constants';
 import generateTodo from 'util/generateTodo';
 
 const getInitialTodos = (): Todo[] => {
+	const initialTodos = [generateTodo('Start using a todo app')];
+
 	if (typeof window !== 'undefined') {
-		localStorage.setItem(
-			'initialTodos',
-			JSON.stringify([generateTodo('Start using a todo app')]),
-		);
-		const initialTodos = localStorage.getItem('initialTodos');
-		if (initialTodos) return JSON.parse(initialTodos) as Todo[];
+		const todosFromLocalStorage = localStorage.getItem('blazingTodos');
+
+		if (todosFromLocalStorage)
+			return JSON.parse(todosFromLocalStorage) as Todo[];
+
+		localStorage.setItem('blazingTodos', JSON.stringify(initialTodos));
 	}
-	return [generateTodo('Start using a todo app')];
+
+	return initialTodos;
 };
 
 export const getInitState = (): StoreState => ({
