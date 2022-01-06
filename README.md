@@ -1,7 +1,7 @@
 **Blazing Todos App**
 
-A multiplatform Todo PWA prototype.
-[Live Demo](https://odedindi-todos.vercel.app/)
+- A multiplatform Todo PWA prototype.
+- [Live Demo](https://odedindi-todos.vercel.app/)
 
 ## App Features
 
@@ -19,7 +19,7 @@ A multiplatform Todo PWA prototype.
 
 ## Code Examples
 
-- React Context, useReducer based store together with a useStore hook for blazing fast interface that is also easy to use and to re-configure:
+- React Context, useReducer based store together with a useStore hook for blazing-fast interface that is also easy to use and to re-configure:
 
 ```shell
 const StoreContext = React.createContext<StoreContext>(undefined!);
@@ -34,7 +34,7 @@ const StoreProvider: React.FC = ({ children }) => {
 const useStore = () => React.useContext(StoreContext);
 
 /*
-then, where and when needed call the useStore hook, for example:
+then, where and when needed call the useStore hook:
 
 	const {
 		state: { filteredTodos, filter, mode, searchQuery, todos },
@@ -103,10 +103,9 @@ useKeyboardListener(handleSubmit, 'Enter', true); // call handleSubmit onle when
 		userInput$
 			.subscribe((input) => {
 				if (!input.trim()) return inputRef.current.focus();
-				if (isAddMode) {
-					dispatch(Action.addTodo(input));
-					inputRef.current.value = '';
-				} else dispatch(Action.searchTodo(input));
+				isAddMode
+					? dispatch(Action.addTodo(input))
+					: dispatch(Action.searchTodo(input));
 			})
 			.unsubscribe();
 		userInput$.next('');
@@ -132,7 +131,7 @@ yarn dev
 
 ## Local Environment Configuration
 
-For auth, the app uses github, if needed auth is needed, please create a new repo on github and on your personal settings and generate both github id and github client secret and thos on to the env.local file
+For auth, the app uses github, if auth is needed, please create a new repo on github and on your personal settings generate both github id and github client secret, and add to the env.local file
 
 # Contributing
 
@@ -147,7 +146,7 @@ Pull requests are warmly welcome.
 - Issue tracker: https://github.com/odedindi/BlazingToDos/issues
   - In case of sensitive bugs like security vulnerabilities, please contact me at
     odedindi@gmail.com directly instead of using issue tracker.
-- I value the care and effort to improve the security and privacy of this project!
+- I value the care and effort to improve the security and privacy of this project as well as the code itself, so do not hesitate to contact me!
 
 ## Licensing
 
