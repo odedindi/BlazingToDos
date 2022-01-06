@@ -4,7 +4,7 @@ export const generateTodo = (
 	content: string,
 	label?: string,
 	themeColor?: string,
-): Todo => ({
+) => ({
 	content,
 	completed: false,
 	createdAt: Date.now(),

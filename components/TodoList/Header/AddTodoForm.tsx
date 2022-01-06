@@ -5,12 +5,7 @@ import { Action, useStore } from 'store';
 import { useKeyboardListener } from 'hooks';
 
 import { BehaviorSubject } from 'rxjs';
-import {
-	debounceTime,
-	map,
-	distinctUntilChanged,
-	filter as rxFilter,
-} from 'rxjs/operators';
+import { debounceTime, map, distinctUntilChanged } from 'rxjs/operators';
 
 const AddTodoForm = () => {
 	const {
@@ -21,55 +16,45 @@ const AddTodoForm = () => {
 	const isAddMode = mode === C.MODES.ADD;
 
 	const placeholderMessage = isAddMode ? 'Add a new todo' : 'Search for a todo';
-	const inputFieldRef = React.useRef<HTMLInputElement>(undefined!);
-	const resetInputField = () => (inputFieldRef.current.value = '');
+	const inputRef = React.useRef<HTMLInputElement>(undefined!);
 
 	const [userInput$] = React.useState(() => new BehaviorSubject(''));
 
 	userInput$.pipe(
-		map((s) => s.trim()),
+		map((s: string) => s.trim()),
 		distinctUntilChanged(),
-		rxFilter((s) => s.length >= 2),
 		debounceTime(250),
 	);
 
-	const handleInput = ({ target }: React.ChangeEvent<HTMLInputElement>) =>
-		userInput$.next(target.value);
+	const handleInput = React.useCallback(
+		({ target }: React.ChangeEvent<HTMLInputElement>) =>
+			userInput$.next(target.value),
+		[userInput$],
+	);
 
-	const handleSubmit = () =>
+	const handleSubmit = React.useCallback(() => {
 		userInput$
 			.subscribe((input) => {
-				if (!input.trim()) return;
+				if (!input.trim()) return inputRef.current.focus();
 				if (isAddMode) {
 					dispatch(Action.addTodo(input));
-					resetInputField();
+					inputRef.current.value = '';
 				} else dispatch(Action.searchTodo(input));
 			})
 			.unsubscribe();
-
+		userInput$.next('');
+	}, [dispatch, isAddMode, userInput$]);
 	useKeyboardListener(handleSubmit, 'Enter');
 
 	return (
 		<S.Form>
 			<input
-				ref={inputFieldRef}
+				ref={inputRef}
 				type="text"
 				placeholder={placeholderMessage}
 				onChange={handleInput}
 			/>
 			<S.Submit onClick={handleSubmit} />
-
-			<>
-				{Object.keys(C.modeOptions).map((key) => (
-					<S.HeaderButton
-						key={key}
-						onClick={() => dispatch(Action.setMode(key as ModeOption))}
-						selected={key === mode}
-					>
-						{C.modeOptions[key as ModeOption]}
-					</S.HeaderButton>
-				))}
-			</>
 		</S.Form>
 	);
 };

@@ -3,12 +3,14 @@ import * as S from './styles';
 
 import AddTodoForm from './AddTodoForm';
 import Filter from './Filter';
+import Mode from './Mode';
 
-const Header = () => (
+const ListHeader = () => (
 	<S.Header>
 		<AddTodoForm />
+		<Mode />
 		<Filter />
 	</S.Header>
 );
 
-export default Header;
+export default ListHeader;

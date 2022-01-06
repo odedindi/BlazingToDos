@@ -20,6 +20,9 @@
 			"config/*": ["config/*"],
 			"hooks/*": ["hooks/*"],
 			"providers/*": ["providers/*"],
+			"services/*": ["services/*"],
+			"store/*": ["store/*"],
+			"store$/*": ["store$/*"],
 			"styles/*": ["styles/*"]
 		}
 	},

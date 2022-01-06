@@ -1,4 +1,5 @@
 import type { AppProps } from 'next/app';
+
 import Router from 'next/router';
 import NProgress from 'nprogress'; //nprogress module
 import 'nprogress/nprogress.css'; //styles of nprogress
@@ -12,8 +13,8 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
 	Router.events.on('routeChangeError', () => NProgress.done());
 
 	return (
-		<Providers>
-			<Component {...pageProps} />;
+		<Providers session={pageProps.session}>
+			<Component {...pageProps} />
 		</Providers>
 	);
 };

@@ -9,9 +9,9 @@ const bounce = keyframes`
 	}
 `;
 
-export const Loader = styled.div<{ show: boolean }>`
+export const Loader = styled.div`
 	padding: 0.6rem;
-	display: ${({ show }) => (show ? 'flex' : 'none')};
+	display: flex;
 `;
 export const Container = styled.div`
 	border-radius: 0.5rem;

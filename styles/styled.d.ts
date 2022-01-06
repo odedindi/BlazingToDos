@@ -26,16 +26,12 @@ type BasicTheme = {
 	};
 };
 
-type LightTheme = {
+type ColorTheme = {
 	body: string;
 	text: string;
 	primary: string;
 };
-type DarkTheme = {
-	body: string;
-	text: string;
-	primary: string;
-};
+
 declare module 'styled-components' {
 	export interface DefaultTheme {
 		// basic theme
@@ -62,10 +58,6 @@ declare module 'styled-components' {
 			code: number;
 		};
 		// light / dark modes
-		colors: {
-			body: string;
-			text: string;
-			primary?: string;
-		};
+		colors: ColorTheme;
 	}
 }

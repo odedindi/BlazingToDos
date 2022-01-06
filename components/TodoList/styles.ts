@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 
 export const TodoListContainer = styled.section`
-	width: 90vw;
+	width: 100%;
 	background-color: ${({ theme }) => theme.colors.body};
-	padding: 2rem;
+	padding: 0 2rem;
 	border-radius: 0.2rem;
 	position: relative;
 `;
@@ -14,6 +14,6 @@ export const List = styled.section`
 
 export const ActiveTodosInfo = styled.p`
 	font-size: ${({ theme }) => theme.fontSizes.h4};
-
-	padding: 5rem 0 0 0;
+	text-align: center;
+	padding: 2.5rem 0 2.5rem 0;
 `;

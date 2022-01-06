@@ -1,12 +1,12 @@
-import { BasicTheme, DarkTheme, LightTheme } from './styled';
+import { BasicTheme, ColorTheme } from './styled';
 
-export const light: LightTheme = {
+export const light: ColorTheme = {
 	body: '#fff',
-	text: '#557BFA',
+	text: '#161515',
 	primary: '#E342D7',
 };
 
-export const dark: DarkTheme = {
+export const dark: ColorTheme = {
 	body: '#0E2161',
 	text: '#E342D7',
 	primary: '#AD8A2A',
@@ -21,7 +21,7 @@ const basicTheme: BasicTheme = {
 		h4: '1.75rem',
 		h3: '2rem',
 		h2: '2.2rem',
-		h1: '2.5rem',
+		h1: '3rem',
 	},
 	fontWeights: {
 		body: 400,

@@ -1,22 +1,7 @@
 import * as C from 'config/constants';
-import generateTodo from 'util/generateTodo';
+import { getInitialTodos } from 'repositories';
 
-const getInitialTodos = (): Todo[] => {
-	const initialTodos = [generateTodo('Start using a todo app')];
-
-	if (typeof window !== 'undefined') {
-		const todosFromLocalStorage = localStorage.getItem('blazingTodos');
-
-		if (todosFromLocalStorage)
-			return JSON.parse(todosFromLocalStorage) as Todo[];
-
-		localStorage.setItem('blazingTodos', JSON.stringify(initialTodos));
-	}
-
-	return initialTodos;
-};
-
-export const getInitState = (): StoreState => ({
+export const getInitialState = (): StoreState => ({
 	errorMessage: '',
 	filter: C.FILTERS.ALL,
 	filteredTodos: [],
@@ -26,4 +11,4 @@ export const getInitState = (): StoreState => ({
 	todos: getInitialTodos(),
 });
 
-export default getInitState;
+export default getInitialState;

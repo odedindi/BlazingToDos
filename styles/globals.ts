@@ -3,7 +3,7 @@ import { createGlobalStyle } from 'styled-components';
 export const GlobalStyle = createGlobalStyle`
 * {
   box-sizing: border-box;
-  transition: all 0.2 ease-in-out;
+  transition: all 0.25 ease-in-out;
 }
 html,
 body {

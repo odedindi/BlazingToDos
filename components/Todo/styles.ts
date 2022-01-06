@@ -1,26 +1,17 @@
 import styled, { css } from 'styled-components';
 import { XSquare } from '@styled-icons/boxicons-solid/XSquare';
-import { CalendarCheck } from '@styled-icons/boxicons-solid/CalendarCheck';
-import { CalendarAlt } from '@styled-icons/boxicons-solid/CalendarAlt';
-
-export const TodoContainer = styled.div`
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	height: 100%;
-`;
+import { CalendarCheck } from '@styled-icons/boxicons-regular/CalendarCheck';
+import { CalendarAlt } from '@styled-icons/boxicons-regular/CalendarAlt';
 
 export const Todo = styled.div<{ completed: boolean }>`
-	background: ${({ theme }) => theme.colors.body};
-	border: ${({ theme }) => theme.colors.body};
-
-	text-decoration: ${({ completed }) => (completed ? `line-through` : '')};
 	display: flex;
 	flex-direction: row;
 
-	padding: 1.275rem 1rem;
-
+	background-color: ${({ theme }) => theme.colors.body};
 	color: ${({ theme }) => theme.colors.text};
+
+	text-decoration: ${({ completed }) => (completed ? `line-through` : '')};
+	padding: 1.275rem 1rem;
 
 	border: none;
 	border-bottom: 0.04rem solid #b8b8b8;
@@ -79,6 +70,7 @@ const iconButtonStyles = css`
 	transform: scale(1.5);
 	&:hover {
 		transform: scale(2.25);
+		color: ${({ theme }) => theme.colors.primary};
 	}
 `;
 

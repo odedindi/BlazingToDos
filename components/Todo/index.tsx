@@ -5,13 +5,12 @@ import * as S from './styles';
 import moment from 'moment';
 
 import { Action, useStore } from 'store';
-import { updateTodo } from 'store/actions';
 
-const ColorPicker = dynamic(() => import('components/colorPicker'), {
+const ColorPicker = dynamic(() => import('components/Todo/colorPicker'), {
 	ssr: false,
 });
 
-const Todo = ({ todo }: { todo: Todo }) => (
+const Todo = ({ todo }: { todo: ITodo }) => (
 	<S.Todo completed={todo.completed}>
 		<Checkbox todo={todo} />
 		<S.Content>{todo.content}</S.Content>
@@ -19,9 +18,9 @@ const Todo = ({ todo }: { todo: Todo }) => (
 	</S.Todo>
 );
 
-export default React.memo(Todo);
+export default Todo;
 
-const Checkbox = ({ todo }: { todo: Todo }) => {
+const Checkbox = ({ todo }: { todo: ITodo }) => {
 	const { dispatch } = useStore();
 
 	return (
@@ -29,14 +28,7 @@ const Checkbox = ({ todo }: { todo: Todo }) => {
 			<S.Checkbox
 				checked={todo.completed}
 				value={todo.id}
-				onChange={({ target: { checked } }) => {
-					const updatedTodo = {
-						...todo,
-						completed: checked,
-						completedAt: checked ? Date.now() : undefined,
-					};
-					dispatch(Action.updateTodo(updatedTodo));
-				}}
+				onChange={(_event) => dispatch(Action.toggleTodo(todo.id))}
 			/>
 			<S.CheckboxBackground
 				checked={todo.completed}

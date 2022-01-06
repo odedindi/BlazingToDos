@@ -1,12 +1,8 @@
 import * as React from 'react';
 import * as S from './styles';
 
-type LoaderProps = {
-	show: boolean;
-};
-
-const Loader = ({ show }: LoaderProps) => (
-	<S.Loader show={show}>
+const Loader = () => (
+	<S.Loader>
 		<S.Container>
 			<S.Dots />
 			<S.Dots />

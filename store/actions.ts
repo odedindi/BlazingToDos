@@ -5,12 +5,14 @@ export const addTodo = (newTodoContent: string): AddTodoAction => ({
 	payload: newTodoContent,
 });
 
-export const removeTodo = (todoId: string): RemoveTodoAction => ({
+export const removeTodo = (todoId: ITodo['id']): RemoveTodoAction => ({
 	type: T.REMOVE_TODO,
 	payload: todoId,
 });
 
-export const searchTodo = (todoContent: string): SearchTodoAction => ({
+export const searchTodo = (
+	todoContent: ITodo['content'],
+): SearchTodoAction => ({
 	type: T.SEARCH_TODO,
 	payload: todoContent,
 });
@@ -25,12 +27,16 @@ export const setMode = (newMode: ModeOption): SetModeAction => ({
 	payload: newMode,
 });
 
-export const updateFilteredTodos = (todos: Todo[]): UpdateFilteredTodos => ({
+export const toggleTodo = (id: ITodo['id']): ToggleTodoAction => ({
+	type: T.TOGGLE_TODO,
+	payload: id,
+});
+export const updateFilteredTodos = (todos: ITodo[]): UpdateFilteredTodos => ({
 	type: T.UPDATE_FILTERED_TODOS,
 	payload: todos,
 });
 
-export const updateTodo = (todo: Todo): UpdateTodoAction => ({
+export const updateTodo = (todo: ITodo): UpdateTodoAction => ({
 	type: T.UPDATE_TODO,
 	payload: todo,
 });

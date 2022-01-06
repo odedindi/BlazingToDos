@@ -1,6 +1,6 @@
 import * as C from 'config/constants';
 
-export const filterTodos = (filter: FilterOption, todos: Todo[]) => {
+export const filterTodos = (filter: FilterOption, todos: ITodo[]) => {
 	switch (filter) {
 		case C.FILTERS.COMPLETED:
 			return todos.filter((todo) => todo.completed);

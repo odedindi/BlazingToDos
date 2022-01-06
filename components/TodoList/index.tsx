@@ -2,8 +2,11 @@ import * as React from 'react';
 import * as S from './styles';
 import * as C from 'config/constants';
 import { Action, useStore } from 'store';
-import Header from 'components/Header';
+
+import { from } from 'rxjs';
+import ListHeader from 'components/TodoList/Header';
 import Todo from 'components/Todo';
+
 import filterTodos from 'util/filterTodos';
 import searchTodos from 'util/searchTodos';
 
@@ -28,29 +31,25 @@ const TodoList = () => {
 		}
 	}, [dispatch, filter, mode, searchQuery, todos]);
 
+	const infoMessage = !activeTodos
+		? 'There are no active todos on your list.'
+		: `${activeTodos} active ${
+				activeTodos === 1 ? 'todo is' : 'todos are'
+		  } left to complete.`;
+
 	return (
 		<S.TodoListContainer>
-			<Header />
+			<ListHeader />
 			<S.List>
 				{filteredTodos.map((todo) => (
 					<Todo key={todo.id} todo={todo} />
 				))}
 			</S.List>
 			{filter !== C.FILTERS.COMPLETED && (
-				<TodosInfo activeTodos={activeTodos} />
+				<S.ActiveTodosInfo>{infoMessage}</S.ActiveTodosInfo>
 			)}
 		</S.TodoListContainer>
 	);
 };
 
-export default TodoList;
-
-const TodosInfo = ({ activeTodos }: { activeTodos: number }) => {
-	const message = !activeTodos
-		? 'There are no todos on your list.'
-		: `${activeTodos} ${
-				activeTodos === 1 ? 'todo is' : 'todos are'
-		  } left to complete`;
-
-	return <S.ActiveTodosInfo>{message}</S.ActiveTodosInfo>;
-};
+export default React.memo(TodoList);
